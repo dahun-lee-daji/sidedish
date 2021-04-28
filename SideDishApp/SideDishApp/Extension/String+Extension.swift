@@ -30,13 +30,14 @@ extension String {
         return attributedString
     }
     
-    static func insertComma(with string: String) -> String {
-        var targetString = string
-        let count = targetString.count / 3
-        for i in 0..<count {
-            let targetIndex = targetString.index(string.endIndex, offsetBy: -((i + 1) * 3))
-            targetString.insert(",", at: targetIndex )
+    var withComma: String {
+        guard let selfAsNumber = Int(self) else {
+            return self
         }
-        return targetString
+        
+        let numberFommater = NumberFormatter()
+        numberFommater.numberStyle = .decimal
+        return numberFommater.string(from: NSNumber(value:selfAsNumber)) ?? self
+        
     }
 }

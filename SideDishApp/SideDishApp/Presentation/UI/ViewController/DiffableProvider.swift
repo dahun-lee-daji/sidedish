@@ -152,8 +152,8 @@ class DiffableProvider  {
     }
     
     private func convertCharge(normal: String, selling: String) -> NSMutableAttributedString {
-        let normalCharge = "\(String.insertComma(with: normal))원"
-        let sellingCharge = "\(String.insertComma(with: selling))원"
+        let normalCharge = "\(normal.withComma)원"
+        let sellingCharge = "\(selling.withComma)원"
         var attributedText : NSMutableAttributedString
         
         if selling != "" {
