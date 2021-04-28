@@ -12,8 +12,8 @@ struct Endpoint {
     var url: URL? {
         var components = URLComponents()
         components.scheme = "http"
-        components.host = "localhost"
-        components.port = 3000
+        components.host = "3.35.220.240"
+        components.port = 8080
         components.path = "/categories/\(path)"
         
         let url = components.url
