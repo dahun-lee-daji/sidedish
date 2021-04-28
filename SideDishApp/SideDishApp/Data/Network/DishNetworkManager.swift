@@ -20,7 +20,7 @@ class DishNetworkManager: DishNetworkManageable {
     }
     
     convenience init() {
-        let networkManager = NetworkManager()
+        let networkManager = NetworkManager.shared
         self.init(networkManager: networkManager)
     }
     

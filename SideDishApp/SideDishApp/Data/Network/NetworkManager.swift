@@ -14,8 +14,9 @@ protocol NetworkManageable {
 
 class NetworkManager: NetworkManageable {
     
-
-    let session: URLSessionProtocol
+    static let shared = NetworkManager()
+    
+    var session: URLSessionProtocol
     
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session

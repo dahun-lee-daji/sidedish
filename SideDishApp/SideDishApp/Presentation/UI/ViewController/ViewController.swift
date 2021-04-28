@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         dishCollectionView.delegate = dishCollectionViewDelegate
         dataSource = DiffableProvider().configureDataSource(collectionView: dishCollectionView)
     }
