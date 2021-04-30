@@ -24,6 +24,7 @@ class ViewController: UIViewController, ViewChangable {
         
         dishCollectionViewDelegate.set(delegate: self)
         dishCollectionViewDelegate.menuListViewModel = menuListViewModel
+        bind()
         dishCollectionView.delegate = dishCollectionViewDelegate
         dataSource = DiffableProvider(targetView: self.view).configureDataSource(collectionView: dishCollectionView)
     }
