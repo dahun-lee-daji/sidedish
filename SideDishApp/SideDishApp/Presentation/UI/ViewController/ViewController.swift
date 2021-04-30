@@ -34,8 +34,8 @@ class ViewController: UIViewController, ViewChangable {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    func pushNextView(dishId: String) {
-        performSegue(withIdentifier: "MenuDetailSegue", sender: .some(dishId))
+    func pushNextView(dishData: Dish) {
+        performSegue(withIdentifier: "MenuDetailSegue", sender: .some(dishData))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,12 +43,11 @@ class ViewController: UIViewController, ViewChangable {
             guard let vc = segue.destination as? MenuDetailController else {
                 return
             }
-            guard let string = sender as? String else {
+            guard let dishData = sender as? Dish else {
                 return
             }
-            vc.dishId = string
-            vc.menuDetailViewModel.fetchDetail(dish: string)
-            
+            vc.menuDetailViewModel.fetchDetail(dish: dishData.dishID)
+            vc.dishData = dishData
         }
     }
 
@@ -95,5 +94,5 @@ class ViewController: UIViewController, ViewChangable {
 }
 
 protocol ViewChangable {
-    func pushNextView(dishId: String) -> Void
+    func pushNextView(dishData : Dish) -> Void
 }

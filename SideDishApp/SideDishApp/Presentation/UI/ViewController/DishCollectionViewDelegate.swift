@@ -19,18 +19,18 @@ class DishCollectionViewDelegate : NSObject, UICollectionViewDelegateFlowLayout 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        var dishId = String()
+        var target = Dish(dishID: "", image: "", alt: "", deliveryType: "", title: "", dishDescription: "", normalPrice: "", sellingPrice: "", badge: "")
         switch indexPath.section {
         case 0:
-            dishId = menuListViewModel.main[0].dishes[indexPath.row].dishID
+            target = menuListViewModel.main[0].dishes[indexPath.row]
         case 1:
-            dishId = menuListViewModel.soup[0].dishes[indexPath.row].dishID
+            target = menuListViewModel.soup[0].dishes[indexPath.row]
         case 2:
-            dishId = menuListViewModel.side[0].dishes[indexPath.row].dishID
+            target = menuListViewModel.side[0].dishes[indexPath.row]
         default:
          break
         }
-        delegate.pushNextView(dishId: dishId)
+        delegate.pushNextView(dishData: target)
         
     }
     

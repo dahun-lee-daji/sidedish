@@ -18,23 +18,18 @@ class MenuDetailController: UIViewController {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var deliveryDescription: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
+    
     @IBOutlet weak var orderNumberLabel: UILabel!
     @IBOutlet weak var totalOrderFeeLabel: UILabel!
     
-    var dishId: String!
+    var dishData: Dish!
     let menuDetailViewModel = MenuDetailViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let navi = self.navigationController else {
-            return
-        }
         bind()
-        navi.isNavigationBarHidden = false
-        
-        navi.navigationBar.topItem?.title
     }
     func bind() {
         menuDetailViewModel
@@ -43,6 +38,28 @@ class MenuDetailController: UIViewController {
             .sink(receiveCompletion: { _ in
                 //error
             }, receiveValue: { detail in
+                guard let navi = self.navigationController else {
+                    return
+                }
+                navi.isNavigationBarHidden = false
+                navi.navigationBar.topItem?.title = self.dishData.title
+//                self.topImageStackView
+                self.titleLabel.text = self.dishData.title
+                self.dishDescriptionLabel.text = detail.productDescription
+                self.orderFeeLabel.text = detail.sellingPrice == "" ? detail.normalPrice : detail.sellingPrice
+//                self.badgeStackView
+                self.pointLabel.text = detail.point
+                self.deliveryDescription.text = detail.deliveryInfo
+                self.deliveryFee.text = detail.deliveryFee
+                
+//                guard let orderNumber = Int(self.orderNumberLabel.text ?? "0") else {
+//                    return
+//                }
+//                guard let orderFee = Int(self.orderFeeLabel.text ?? "0") else {
+//                    return
+//                }
+                
+//                self.totalOrderFeeLabel.text = String(describing: orderNumber * orderFee) + "원"
                 
             })
             .store(in: &subscriptions)
