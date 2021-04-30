@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--든든한 국밥 한그릇 뚝딱-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SideDishApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iTz-BX-poK">
-                                <rect key="frame" x="16" y="88" width="382" height="774"/>
+                                <rect key="frame" x="16" y="44" width="382" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dJ2-Og-OAI">
                                     <size key="itemSize" width="343" height="130"/>
@@ -87,6 +87,7 @@
                                             <outlet property="dishImage" destination="yN9-DB-dHX" id="ytu-Yr-GFg"/>
                                             <outlet property="eventStackView" destination="hRz-G5-gDV" id="TuY-nX-fLV"/>
                                             <outlet property="title" destination="cDR-x7-FTb" id="Dmx-NX-wI7"/>
+                                            <segue destination="Jm3-QS-WYj" kind="show" identifier="MenuDetailSegue" id="teo-FH-nC0"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -105,13 +106,7 @@
                             <constraint firstItem="iTz-BX-poK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kAN-ht-zoQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="든든한 국밥 한그릇 뚝딱" id="64o-mm-Oat">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="SOR-25-7dn">
-                            <connections>
-                                <segue destination="Jm3-QS-WYj" kind="push" id="eW7-qy-VTf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="64o-mm-Oat"/>
                     <connections>
                         <outlet property="dishCollectionView" destination="iTz-BX-poK" id="cSG-Tp-xDF"/>
                     </connections>
@@ -149,11 +144,9 @@
         <!--Navigation Controller-->
         <scene sceneID="aQT-Ae-jwL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fE4-8L-mzo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4g2-P2-tDV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="4g2-P2-tDV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YeS-1p-TZm">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -161,6 +154,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zK4-nF-fy5"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fE4-8L-mzo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="88.392857142857139"/>
         </scene>
@@ -173,7 +167,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bzk-Pv-GBe">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1478"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0w-Io-JlN">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>

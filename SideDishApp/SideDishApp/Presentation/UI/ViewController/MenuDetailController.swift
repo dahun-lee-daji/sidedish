@@ -25,8 +25,18 @@ class MenuDetailController: UIViewController {
     
     @IBOutlet weak var totalOrderFeeLabel: UILabel!
     
+    var dishId: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let navi = self.navigationController else {
+            return
+        }
+        
+        navi.isNavigationBarHidden = false
+        
+        navi.navigationBar.topItem?.title
     }
     
     @IBAction func subtractStock(_ sender: Any) {

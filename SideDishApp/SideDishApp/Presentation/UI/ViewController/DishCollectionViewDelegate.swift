@@ -30,7 +30,7 @@ class DishCollectionViewDelegate : NSObject, UICollectionViewDelegateFlowLayout 
         default:
          break
         }
-        delegate.pushNextView()
+        delegate.pushNextView(dishId: dishId)
         
     }
     

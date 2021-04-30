@@ -29,16 +29,22 @@ class ViewController: UIViewController, ViewChangable {
         dataSource = DiffableProvider(targetView: self.view).configureDataSource(collectionView: dishCollectionView)
     }
     
-    func pushNextView() {
-        performSegue(withIdentifier: "detailViewSegue", sender: .none)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func pushNextView(dishId: String) {
+        performSegue(withIdentifier: "MenuDetailSegue", sender: .some(dishId))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailViewSegue" {
-            guard let vc = segue.destination as? MenuDetailViewController else {
+        if segue.identifier == "MenuDetailSegue" {
+            guard let vc = segue.destination as? MenuDetailController else {
                 return
             }
-            vc.dishId
+            let string = sender as? String
+            vc.dishId = string
             
         }
     }
@@ -86,5 +92,5 @@ class ViewController: UIViewController, ViewChangable {
 }
 
 protocol ViewChangable {
-    func pushNextView() -> Void
+    func pushNextView(dishId: String) -> Void
 }
