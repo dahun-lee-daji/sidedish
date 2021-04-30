@@ -9,7 +9,7 @@ import UIKit
 import Toast_Swift
 import Combine
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ViewChangable {
 
     @IBOutlet weak var dishCollectionView: UICollectionView!
     
@@ -21,9 +21,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        dishCollectionViewDelegate.set(delegate: self)
+        dishCollectionViewDelegate.menuListViewModel = menuListViewModel
         dishCollectionView.delegate = dishCollectionViewDelegate
-        dataSource = DiffableProvider().configureDataSource(collectionView: dishCollectionView)
+        dataSource = DiffableProvider(targetView: self.view).configureDataSource(collectionView: dishCollectionView)
+    }
+    
+    func pushNextView() {
+        performSegue(withIdentifier: "detailViewSegue", sender: .none)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailViewSegue" {
+            guard let vc = segue.destination as? MenuDetailViewController else {
+                return
+            }
+            vc.dishId
+            
+        }
     }
 
     private func addDataToSnapshot (dishes: [Dishes]) {
@@ -66,4 +82,8 @@ class ViewController: UIViewController {
             .store(in: &subscriptions)
     }
     
+}
+
+protocol ViewChangable {
+    func pushNextView() -> Void
 }

@@ -10,6 +10,12 @@ import Toast_Swift
 
 class DiffableProvider  {
     
+    private let targetView : UIView
+    
+    init(targetView: UIView) {
+        self.targetView = targetView
+    }
+    
     private var toasterCloser = Dictionary<Int, () -> Void>()
     
     private let colorDictionary = ["이벤트특가" : UIColor.init(displayP3Red: 130/255, green: 211/255, blue: 45/255, alpha: 1), "론칭특가" : UIColor.init(displayP3Red: 134/255, green: 198/255, blue: 255/255, alpha: 1)]
@@ -59,7 +65,6 @@ class DiffableProvider  {
                     }
                 }
             }
-            
         })
         
         return cellRegistration
@@ -92,9 +97,7 @@ class DiffableProvider  {
     
     private func addCloser(headerSection: UIView, sectionData: Dishes) {
         self.toasterCloser[headerSection.hash] = {
-            guard let mainView = UIApplication.shared.windows[0].rootViewController?.view else {
-                return
-            }
+            let mainView = self.targetView 
             let message = "상품 \(sectionData.dishes.count)개 있어요!"
             
             mainView.hideAllToasts()

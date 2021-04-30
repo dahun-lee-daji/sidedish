@@ -37,7 +37,6 @@ class NetworkManager: NetworkManageable {
                 guard 200..<300 ~= httpResponse.statusCode else {
                     return Fail(error: NetworkError.unknown).eraseToAnyPublisher()
                 }
-                
                 completion(.success(data))
                 let decodeData = Just(data)
                     .decode(type: T.self, decoder: JSONDecoder())
