@@ -43,8 +43,11 @@ class ViewController: UIViewController, ViewChangable {
             guard let vc = segue.destination as? MenuDetailController else {
                 return
             }
-            let string = sender as? String
+            guard let string = sender as? String else {
+                return
+            }
             vc.dishId = string
+            vc.menuDetailViewModel.fetchDetail(dish: string)
             
         }
     }

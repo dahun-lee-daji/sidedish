@@ -25,10 +25,16 @@ class DishNetworkManager: DishNetworkManageable {
     }
     
     func getDishes(path: String, completion: @escaping (Result<Data, NetworkError>) -> Void) -> AnyPublisher<[Dishes], NetworkError> {
-        let url = Endpoint.get(path: path).url
+        let url = Endpoint.get(apiCase: .category, path: path).url
         
         return networkManager.get(url: url) { data in
             completion(data)
         }
+    }
+    
+    func getDetail(path: String) -> AnyPublisher<Detail,NetworkError> {
+        let url = Endpoint.get(apiCase: .dishes, path: path).url
+        
+        return networkManager.get(url: url, completion: {_ in })
     }
 }

@@ -8,21 +8,25 @@
 import Foundation
 
 struct Endpoint {
+    
+    enum APICase: String {
+        case category = "categories"
+        case dishes = "dishes"
+    }
+    private var apiCase: APICase
     private var path: String
     var url: URL? {
         var components = URLComponents()
         components.scheme = "http"
-        components.host = "localhost"
-        components.port = 3000
-        components.path = "/categories/\(path)"
-        
+        components.host = "3.35.220.240"
+        components.port = 8080
+        components.path = "/\(apiCase.rawValue)/\(path)"
         let url = components.url
-
         return url
     }
     
-    static func get(path: String) -> Self {
+    static func get(apiCase: APICase, path: String) -> Self {
 
-        return Endpoint(path: path)
+        return Endpoint(apiCase: apiCase, path: path)
     }
 }
