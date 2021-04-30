@@ -10,7 +10,7 @@ import Combine
 
 class MenuDetailController: UIViewController {
     
-    @IBOutlet weak var topImageStackView: UIStackView!
+    @IBOutlet weak var topImageScroolViewWidth: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dishDescriptionLabel: UILabel!
     @IBOutlet weak var orderFeeLabel: UILabel!
@@ -19,9 +19,11 @@ class MenuDetailController: UIViewController {
     @IBOutlet weak var deliveryDescription: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
     
+    @IBOutlet weak var topImageScrollView: UIScrollView!
     @IBOutlet weak var orderNumberLabel: UILabel!
     @IBOutlet weak var totalOrderFeeLabel: UILabel!
     
+    @IBOutlet weak var detailSectionStackView: UIStackView!
     var dishData: Dish!
     let menuDetailViewModel = MenuDetailViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -43,11 +45,32 @@ class MenuDetailController: UIViewController {
                 }
                 navi.isNavigationBarHidden = false
                 navi.navigationBar.topItem?.title = self.dishData.title
-//                self.topImageStackView
+                
+                let thumbnailImageAdressArray = detail.thumbImages.components(separatedBy: ",")
+                self.topImageScroolViewWidth.constant = CGFloat(thumbnailImageAdressArray.count * 375)
+                self.topImageScroolViewWidth.isActive = true
+                self.topImageScrollView.subviews.first(where: {
+                    ObjectIdentifier(type(of: $0)) == ObjectIdentifier(type(of: UIImageView()))
+                })?.removeFromSuperview()
+                for imageAdress in thumbnailImageAdressArray {
+                    let image = ViewPlasticSurgery.shared.createImage(url: imageAdress)
+                    let imageView = UIImageView.init(frame: CGRect.init(x: (self.topImageScrollView.subviews.count - 1) * 375, y: 0, width: 375, height: 376))
+                    imageView.image = image
+                    imageView.contentMode = .scaleAspectFit
+                    self.topImageScrollView.addSubview(imageView)
+                }
+                
                 self.titleLabel.text = self.dishData.title
                 self.dishDescriptionLabel.text = detail.productDescription
                 self.orderFeeLabel.text = detail.sellingPrice == "" ? detail.normalPrice : detail.sellingPrice
-//                self.badgeStackView
+                
+                ViewPlasticSurgery.shared.removeResidualBadges(stackView: self.badgeStackView)
+                if let badgeArray = ViewPlasticSurgery.shared.createBadges(badgeString: self.dishData.badge) {
+                    for badge in badgeArray {
+                        self.badgeStackView.addArrangedSubview(badge)
+                    }
+                }
+                
                 self.pointLabel.text = detail.point
                 self.deliveryDescription.text = detail.deliveryInfo
                 self.deliveryFee.text = detail.deliveryFee
@@ -60,6 +83,13 @@ class MenuDetailController: UIViewController {
 //                }
                 
 //                self.totalOrderFeeLabel.text = String(describing: orderNumber * orderFee) + "원"
+                for detailSectionAdress in
+                    detail.detailSection.components(separatedBy: ",") {
+                    let image = ViewPlasticSurgery.shared.createImage(url: detailSectionAdress)
+                    let imageView = UIImageView.init(image: image)
+                    self.detailSectionStackView.addArrangedSubview(imageView)
+                }
+                
                 
             })
             .store(in: &subscriptions)

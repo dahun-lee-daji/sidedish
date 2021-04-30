@@ -36,6 +36,7 @@
 		B0446685263BA35F00DAD616 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446684263BA35F00DAD616 /* Detail.swift */; };
 		B0446689263BA58A00DAD616 /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446688263BA58A00DAD616 /* MenuDetailViewModel.swift */; };
 		B044668D263BA5CF00DAD616 /* MenuDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044668C263BA5CF00DAD616 /* MenuDetailUseCase.swift */; };
+		B0446691263BB25300DAD616 /* ViewPlasticSurgery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446690263BB25300DAD616 /* ViewPlasticSurgery.swift */; };
 		B0911EA026316B9A00D5EBEC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911E9F26316B9A00D5EBEC /* String+Extension.swift */; };
 		B0911EA42631AF3400D5EBEC /* DiffableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911EA32631AF3400D5EBEC /* DiffableProvider.swift */; };
 		B0911EA82632B7A100D5EBEC /* DishCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911EA72632B7A000D5EBEC /* DishCollectionViewDelegate.swift */; };
@@ -88,6 +89,7 @@
 		B0446684263BA35F00DAD616 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		B0446688263BA58A00DAD616 /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
 		B044668C263BA5CF00DAD616 /* MenuDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailUseCase.swift; sourceTree = "<group>"; };
+		B0446690263BB25300DAD616 /* ViewPlasticSurgery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPlasticSurgery.swift; sourceTree = "<group>"; };
 		B0911E9F26316B9A00D5EBEC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B0911EA32631AF3400D5EBEC /* DiffableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableProvider.swift; sourceTree = "<group>"; };
 		B0911EA72632B7A000D5EBEC /* DishCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				B0911EA32631AF3400D5EBEC /* DiffableProvider.swift */,
 				B0911EA72632B7A000D5EBEC /* DishCollectionViewDelegate.swift */,
 				1E505417263A97EB005615F5 /* MenuDetailController.swift */,
+				B0446690263BB25300DAD616 /* ViewPlasticSurgery.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				1ECD5F70262F3F1C00DC56C0 /* MenuListUseCase.swift in Sources */,
 				1ECD5F6A262F3B6500DC56C0 /* DishNetworkManager.swift in Sources */,
 				1E50540B26395ADB005615F5 /* LoadingViewController.swift in Sources */,
+				B0446691263BB25300DAD616 /* ViewPlasticSurgery.swift in Sources */,
 				B04466292636911D00DAD616 /* DishCell.swift in Sources */,
 				1E1DBAD2262DDDFC0050FE6C /* AppDelegate.swift in Sources */,
 				1ECF2EC32635E2EC006982BE /* CoreDataMenuResponseStorage.swift in Sources */,
